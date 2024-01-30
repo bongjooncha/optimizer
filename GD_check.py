@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# 시드 작성
+np.random.seed(42)
 # 가상의 데이터 생성
 X = 2 * np.random.rand(100, 1)
 y = 4 + 3 * X + np.random.randn(100, 1)
@@ -10,7 +12,7 @@ X_b = np.c_[np.ones((100, 1)), X]
 
 # 초기값 설정
 eta = 0.1  # 학습률
-n_iterations = 1000  # 반복 횟수
+n_iterations = 100  # 반복 횟수
 m = 100  # 샘플 개수
 batch_size = 10  # 미니 배치 크기
 

@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 가상의 데이터 생성
-X = 2 * np.random.rand(100, 1)
-y = 4 + 3 * X + np.random.randn(100, 1)
+X = 2 * np.random.rand(100, 1) # 0과 2사이의 수 100개 생성(독립변수)
+y = 4 + 3 * X + np.random.randn(100, 1) # 4+3*X에 노이즈가 추가된 y생성
 
 # 편향을 위해 X에 1 추가
 X_b = np.c_[np.ones((100, 1)), X]
@@ -13,7 +13,7 @@ eta = 0.1  # 학습률
 n_epochs = 50  # 에포크 횟수
 m = 100  # 샘플 개수
 
-# 학습 스케줄 파라미터 설정
+# 학습 스케줄 파라미터 설정(하이퍼 파라미터임)
 t0, t1 = 5, 50  
 def learning_schedule(t):
     return t0 / (t + t1)
