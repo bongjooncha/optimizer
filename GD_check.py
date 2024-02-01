@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 # 시드 작성
 np.random.seed(42)
@@ -12,7 +13,7 @@ X_b = np.c_[np.ones((100, 1)), X]
 
 # 초기값 설정
 eta = 0.1  # 학습률
-n_iterations = 100  # 반복 횟수
+n_iterations = 1000  # 반복 횟수
 m = 100  # 샘플 개수
 batch_size = 10  # 미니 배치 크기
 
@@ -61,14 +62,28 @@ for iteration in range(n_iterations):
 
 theta_mgd_path = np.array(theta_mgd_path)
 
-# 결과 시각화
-plt.figure(figsize=(10, 8))
-plt.plot(theta_bgd_path[:, 0], theta_bgd_path[:, 1], "b-o", linewidth=1, label="BGD")
-plt.plot(theta_sgd_path[:, 0], theta_sgd_path[:, 1], "g-+", linewidth=1, label="SGD")
-plt.plot(theta_mgd_path[:, 0], theta_mgd_path[:, 1], "r-s", linewidth=1, label="MGD")
-plt.xlabel(r"$\theta_0$")
-plt.ylabel(r"$\theta_1$")
-plt.title("Gradient Descent Variants")
-plt.legend()
-plt.grid(True)
+# 애니메이션 설정
+fig, ax = plt.subplots(figsize=(10, 8))
+
+def animate(i):
+    plt.clf()
+    plt.plot(X, y, 'b.')  # 데이터 플롯
+
+    # Batch Gradient Descent (BGD)
+    plt.plot(X, X_b.dot(theta_bgd_path[i]), 'r-', label="BGD")
+
+    # Stochastic Gradient Descent (SGD)
+    plt.plot(X, X_b.dot(theta_sgd_path[i]), 'g-', label="SGD")
+
+    # Mini-batch Gradient Descent (MGD)
+    plt.plot(X, X_b.dot(theta_mgd_path[i]), 'b-', label="MGD")
+
+    plt.title(f"Iteration: {i}")
+    plt.xlabel('X')
+    plt.ylabel('y')
+    plt.legend()
+    plt.grid(True)
+
+ani = FuncAnimation(fig, animate, frames=len(theta_bgd_path), interval=50)
+
 plt.show()
