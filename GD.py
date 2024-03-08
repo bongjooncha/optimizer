@@ -5,11 +5,10 @@ from matplotlib.animation import FuncAnimation
 # 가상의 데이터 생성
 np.random.seed(42)      #다른 GD와 비교하기 위해서 seed 정의
 
-X = 2 * np.random.rand(100, 1)           # 0과 2사이의 수 100개 생성(독립변수)
-y = 4 + 3 * X + np.random.randn(100, 1)  # 4+3*X에 노이즈가 추가된 y생성(종속변수)
-                                         # theta0이 4, theta1이 3에 가깝게 나와야함
+X = 2 * np.random.rand(100, 1)        
+y = 4 + 3 * X + np.random.randn(100, 1)
 
-# 편향을 위해 X에 1 추가
+# 4*1임. 4는 변수를 곱하지 않는 상수이므로 1을 넣어 놓는다.(= 편향을 위해 1 생성)
 X_b = np.c_[np.ones((100, 1)), X]
 
 # 초기값 설정

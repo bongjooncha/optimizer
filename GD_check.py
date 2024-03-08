@@ -8,6 +8,18 @@ np.random.seed(42)
 X = 2 * np.random.rand(100, 1)
 y = 4 + 3 * X + np.random.randn(100, 1)
 
+# #기본 분포만 표기
+# plt.rcParams['font.family'] ='Malgun Gothic'
+# plt.rcParams['axes.unicode_minus'] =False
+# plt.figure(figsize=(8, 6))
+# plt.scatter(X, y, s=30, c='b', marker='o', alpha=0.5)
+# plt.title("가상 데이터")
+# plt.xlabel("X")
+# plt.ylabel("y")
+# plt.grid(True)
+# plt.show()
+
+
 # 편향을 위해 X에 1 추가
 X_b = np.c_[np.ones((100, 1)), X]
 
